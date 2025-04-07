@@ -71,12 +71,21 @@
         <scope>runtime</scope>
     </dependency>
 
-    <!-- SQL Server (para cuando conectemos a tu base real) -->
-    <dependency>
-        <groupId>com.microsoft.sqlserver</groupId>
-        <artifactId>mssql-jdbc</artifactId>
-        <version>12.4.1.jre11</version> <!-- Compatible con Java 17 -->
-    </dependency>
+  
+    <!-- BCrypt para encriptar contraseñas -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+    
+
+    <!-- SQL Server JDBC Driver -->
+<dependency>
+    <groupId>com.microsoft.sqlserver</groupId>
+    <artifactId>mssql-jdbc</artifactId>
+    <version>12.4.1.jre11</version> <!-- Compatible con Java 17 -->
+</dependency>
+
 
 </dependencies>
 
