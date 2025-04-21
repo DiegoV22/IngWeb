@@ -13,7 +13,8 @@ COPY --from=build /app/target/springboot-web-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 # Este también es crucial para que use el puerto dinámico asignado
-ENV PORT=8080
+ENV PORT=$PORT
+
 
 # Comando de inicio
 CMD ["java", "-jar", "app.jar"]
