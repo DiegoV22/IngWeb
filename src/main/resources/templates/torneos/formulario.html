@@ -48,6 +48,15 @@
                             <input type="date" th:field="*{fechaFinal}" class="form-control" required>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label">Estado</label>
+                        <select th:field="*{estado}" class="form-select" required>
+                            <option value="">-- Selecciona un estado --</option>
+                            <option th:value="EN_PROGRESO" th:text="'En progreso'"></option>
+                            <option th:value="FINALIZADO" th:text="'Finalizado'"></option>
+                        </select>
+                    </div>
+                    
 
                     <div class="d-flex justify-content-between">
                         <a th:href="@{/torneos}" class="btn btn-secondary">Cancelar</a>

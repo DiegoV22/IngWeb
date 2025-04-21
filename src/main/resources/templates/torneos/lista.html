@@ -25,6 +25,8 @@
                         <th>Costo</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Final</th>
+                        <th>Estado</th>
+
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -36,6 +38,8 @@
                         <td th:text="${torneo.costo} + ' USD'"></td>
                         <td th:text="${torneo.fechaInicio}"></td>
                         <td th:text="${torneo.fechaFinal}"></td>
+                        <td th:text="${torneo.estado}"></td>
+
                         <td>
                             <a th:href="@{/torneos/editar/{id}(id=${torneo.id})}" class="btn btn-warning btn-sm me-1">Editar</a>
                             <a th:href="@{/torneos/eliminar/{id}(id=${torneo.id})}"

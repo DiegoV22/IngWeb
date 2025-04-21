@@ -36,13 +36,13 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/css/**", "/js/**", "/images/**", "/login", "/usuarios/nuevo", "/usuarios/guardar").permitAll() // 👈 Asegúrate de incluir /login
+                .requestMatchers("/css/**", "/js/**", "/images/**", "/login", "/usuarios/nuevo", "/usuarios/guardar", "/home").permitAll() // 👈 Asegúrate de incluir /login
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/usuarios", true)
+                .defaultSuccessUrl("/home", true)
                 .failureUrl("/login?error=true")
             )
             .logout(logout -> logout

@@ -22,6 +22,10 @@ public class Torneo {
     @Column(name = "fecha_final")
     private LocalDate fechaFinal;
 
+    @Enumerated(EnumType.STRING)
+    private EstadoTorneo estado; 
+
+
     // Getters y Setters
 
     public Long getId() {
@@ -79,4 +83,12 @@ public class Torneo {
     public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
+    public EstadoTorneo getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoTorneo estado) {
+        this.estado = estado;
+    }
+
 }

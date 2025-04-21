@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.diego.curso.springboot.webapp.springboot_web.dto.ReporteTorneoDTO;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/torneos")
@@ -44,4 +49,23 @@ public class TorneoController {
         torneoService.deleteById(id);
         return "redirect:/torneos";
     }
+
+    @GetMapping("/reporte")
+public String mostrarFormularioReporte() {
+    return "torneos/reporte-formulario";
+}
+
+@PostMapping("/reporte")
+public String generarReporte(
+        @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
+        @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin,
+        Model model) {
+
+    List<ReporteTorneoDTO> reporte = torneoService.generarReporte(fechaInicio, fechaFin);
+    model.addAttribute("reporte", reporte);
+    model.addAttribute("fechaInicio", fechaInicio);
+    model.addAttribute("fechaFin", fechaFin);
+    return "torneos/reporte-resultado";
+}
+    
 }
