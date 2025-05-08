@@ -30,32 +30,18 @@ public class UsuarioController {
     }
 
     @PostMapping("/guardar")
-    public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario, Model model) {
-    
-        String password = usuario.getPassword();
-        
-        // Validar contraseña segura
-        // if (password == null || password.length() < 8 ||
-        // !password.matches(".*[A-Z].*") ||
-        // !password.matches(".*[a-z].*") ||
-        // !password.matches(".*\\d.*")||
-        // !password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{}|;:',.<>/?].*")) 
-        // {
-        
-        //     model.addAttribute("usuario", usuario);
-        //     model.addAttribute("error", "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.");
-        //     return "usuarios/formulario";
-        // }
-
-    
-    
-        // Encriptar contraseña antes de guardar
-       // usuario.setPassword(new BCryptPasswordEncoder().encode(password));
+public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario, Model model) {
+    try {
         usuario.setFechaRegistro(LocalDate.now());
-    
         usuarioService.save(usuario);
         return "redirect:/usuarios";
+    } catch (IllegalArgumentException ex) {
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("error", ex.getMessage()); // <- Captura el mensaje desde el servicio
+        return "usuarios/formulario"; // <- vuelve al formulario con mensaje
     }
+}
+
     
 
     

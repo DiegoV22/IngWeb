@@ -12,7 +12,12 @@ public class Torneo {
     private Long id;
 
     private String nombre;
-    private String categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private CategoriaTorneo categoria;
+
+
     private String ubicacion;
     private Double costo;
 
@@ -44,13 +49,14 @@ public class Torneo {
         this.nombre = nombre;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public CategoriaTorneo getCategoria() {
+    return categoria;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+     public void setCategoria(CategoriaTorneo categoria) {
+    this.categoria = categoria;
     }
+
 
     public String getUbicacion() {
         return ubicacion;
