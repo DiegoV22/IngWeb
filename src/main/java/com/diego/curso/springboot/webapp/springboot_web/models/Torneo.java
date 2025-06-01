@@ -17,8 +17,6 @@ public class Torneo {
     @JoinColumn(name = "categoria_id")
     private CategoriaTorneo categoria;
 
-
-    private String ubicacion;
     private Double costo;
 
     @Column(name = "fecha_inicio")
@@ -28,8 +26,7 @@ public class Torneo {
     private LocalDate fechaFinal;
 
     @Enumerated(EnumType.STRING)
-    private EstadoTorneo estado; 
-
+    private EstadoTorneo estado;
 
     // Getters y Setters
 
@@ -50,20 +47,11 @@ public class Torneo {
     }
 
     public CategoriaTorneo getCategoria() {
-    return categoria;
+        return categoria;
     }
 
-     public void setCategoria(CategoriaTorneo categoria) {
-    this.categoria = categoria;
-    }
-
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setCategoria(CategoriaTorneo categoria) {
+        this.categoria = categoria;
     }
 
     public Double getCosto() {
@@ -89,6 +77,7 @@ public class Torneo {
     public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
+
     public EstadoTorneo getEstado() {
         return estado;
     }
@@ -96,5 +85,4 @@ public class Torneo {
     public void setEstado(EstadoTorneo estado) {
         this.estado = estado;
     }
-
 }
