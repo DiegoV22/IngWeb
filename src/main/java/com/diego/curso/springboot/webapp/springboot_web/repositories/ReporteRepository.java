@@ -23,5 +23,8 @@ public interface ReporteRepository {
     List<RecomendacionCombinacionExitosaDTO> obtenerRecomendaciones();
 
     List<IngresosPorCategoriaDTO> obtenerIngresosPorCategoria();
+    
+    List<RentabilidadTorneoDTO> calcularRentabilidadPorTorneo();
+
 
 }

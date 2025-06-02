@@ -58,4 +58,10 @@ public List<IngresosPorCategoriaDTO> obtenerIngresosPorCategoria() {
     return reporteRepository.obtenerIngresosPorCategoria();
 }
 
+@Override
+public List<RentabilidadTorneoDTO> calcularRentabilidadPorTorneo() {
+    return reporteRepository.calcularRentabilidadPorTorneo();
+}
+
+
 }

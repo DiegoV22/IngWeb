@@ -25,4 +25,7 @@ public interface ReporteService {
 
     List<IngresosPorCategoriaDTO> obtenerIngresosPorCategoria();
 
+    List<RentabilidadTorneoDTO> calcularRentabilidadPorTorneo();
+
+
 }

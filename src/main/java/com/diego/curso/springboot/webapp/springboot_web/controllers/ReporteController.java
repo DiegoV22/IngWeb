@@ -105,6 +105,14 @@ public String vistaRecomendacionesFinales(Model model) {
     return "reportes/reporte_recomendaciones";
 }
 
+@GetMapping("/rentabilidad")
+public String rentabilidadTorneos(Model model) {
+    List<RentabilidadTorneoDTO> lista = reporteService.calcularRentabilidadPorTorneo();
+    model.addAttribute("datos", lista);
+    return "reportes/rentabilidad";
+}
+
+
 
 
 

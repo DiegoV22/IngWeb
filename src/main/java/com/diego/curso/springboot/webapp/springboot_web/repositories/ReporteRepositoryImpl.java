@@ -214,5 +214,25 @@ public List<IngresosPorCategoriaDTO> obtenerIngresosPorCategoria() {
              .getResultList();
 }
 
+@Override
+public List<RentabilidadTorneoDTO> calcularRentabilidadPorTorneo() {
+    String jpql = """
+        SELECT new com.diego.curso.springboot.webapp.springboot_web.dto.RentabilidadTorneoDTO(
+            t.nombre,
+            CAST(t.estado AS string),
+            t.costo,
+            SUM(a.precio * a.cantidadVendida)
+        )
+        FROM Asistencia a
+        JOIN a.partido p
+        JOIN p.torneo t
+        GROUP BY t.id, t.nombre, t.estado, t.costo
+    """;
+    
+
+    return em.createQuery(jpql, RentabilidadTorneoDTO.class).getResultList();
+}
+
+
 
 }
