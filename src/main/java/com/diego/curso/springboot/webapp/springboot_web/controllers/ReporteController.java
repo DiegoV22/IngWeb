@@ -112,6 +112,16 @@ public String rentabilidadTorneos(Model model) {
     return "reportes/rentabilidad";
 }
 
+@GetMapping("/ingresos-torneo-equipo")
+public String verIngresosPorTorneoYEquipo(Model model) {
+    List<ResumenIngresosPorTorneoYEquipoDTO> datos = reporteService.obtenerResumenMayorYMenorPorTorneo();
+    model.addAttribute("resumenes", datos);
+    return "reportes/ingresos_torneo_equipo";
+}
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.diego.curso.springboot.webapp.springboot_web.services;
 
+import com.diego.curso.springboot.webapp.springboot_web.dto.ResumenIngresosPorTorneoYEquipoDTO;
 import com.diego.curso.springboot.webapp.springboot_web.models.Partido;
 import com.diego.curso.springboot.webapp.springboot_web.repositories.PartidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,8 @@ public class PartidoServiceImpl implements PartidoService {
     public void deleteById(Long id) {
         partidoRepository.deleteById(id);
     }
+ 
+
 }
+
+

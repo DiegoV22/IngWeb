@@ -27,5 +27,9 @@ public interface ReporteService {
 
     List<RentabilidadTorneoDTO> calcularRentabilidadPorTorneo();
 
+    List<ResumenIngresosPorTorneoYEquipoDTO> obtenerResumenMayorYMenorPorTorneo();
+
+
+
 
 }

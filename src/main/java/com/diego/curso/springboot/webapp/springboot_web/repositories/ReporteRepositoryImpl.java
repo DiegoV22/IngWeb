@@ -234,5 +234,27 @@ public List<RentabilidadTorneoDTO> calcularRentabilidadPorTorneo() {
 }
 
 
+@Override
+public List<ResumenIngresosPorTorneoYEquipoDTO> obtenerIngresosPorTorneoYEquipo() {
+    String jpql = """
+        SELECT new com.diego.curso.springboot.webapp.springboot_web.dto.ResumenIngresosPorTorneoYEquipoDTO(
+            t.id,
+            t.nombre,
+            e.nombre,
+            SUM(a.precio * a.cantidadVendida)
+        )
+        FROM Asistencia a
+        JOIN a.partido p
+        JOIN p.torneo t
+        JOIN Equipo e ON e.id = p.equipo1.id OR e.id = p.equipo2.id
+        GROUP BY t.id, t.nombre, e.nombre
+        ORDER BY t.id, SUM(a.precio * a.cantidadVendida) DESC
+        """;
+
+    return em.createQuery(jpql, ResumenIngresosPorTorneoYEquipoDTO.class).getResultList();
+}
+
+
+
 
 }

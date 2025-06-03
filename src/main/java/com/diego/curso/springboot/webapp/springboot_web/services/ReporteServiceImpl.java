@@ -6,7 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.Comparator;
+
 
 @Service
 public class ReporteServiceImpl implements ReporteService {
@@ -62,6 +70,41 @@ public List<IngresosPorCategoriaDTO> obtenerIngresosPorCategoria() {
 public List<RentabilidadTorneoDTO> calcularRentabilidadPorTorneo() {
     return reporteRepository.calcularRentabilidadPorTorneo();
 }
+
+@Override
+public List<ResumenIngresosPorTorneoYEquipoDTO> obtenerResumenMayorYMenorPorTorneo() {
+    List<ResumenIngresosPorTorneoYEquipoDTO> todos = reporteRepository.obtenerIngresosPorTorneoYEquipo();
+
+    Map<Long, List<ResumenIngresosPorTorneoYEquipoDTO>> agrupadoPorTorneo = todos.stream()
+            .collect(Collectors.groupingBy(ResumenIngresosPorTorneoYEquipoDTO::getIdTorneo));
+
+    List<ResumenIngresosPorTorneoYEquipoDTO> resultadoFinal = new ArrayList<>();
+
+    for (Map.Entry<Long, List<ResumenIngresosPorTorneoYEquipoDTO>> entry : agrupadoPorTorneo.entrySet()) {
+        List<ResumenIngresosPorTorneoYEquipoDTO> lista = entry.getValue();
+
+        lista.stream()
+                .max(Comparator.comparingDouble(ResumenIngresosPorTorneoYEquipoDTO::getIngresoTotal))
+                .ifPresent(mayor -> {
+                    mayor.setTipo("mayor");
+                    resultadoFinal.add(mayor);
+                });
+
+        lista.stream()
+                .min(Comparator.comparingDouble(ResumenIngresosPorTorneoYEquipoDTO::getIngresoTotal))
+                .ifPresent(menor -> {
+                    if (!resultadoFinal.contains(menor)) {
+                        menor.setTipo("menor");
+                        resultadoFinal.add(menor);
+                    }
+                });
+    }
+
+    return resultadoFinal;
+}
+
+
+
 
 
 }
