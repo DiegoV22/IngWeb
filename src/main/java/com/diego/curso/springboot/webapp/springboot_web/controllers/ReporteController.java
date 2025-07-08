@@ -120,6 +120,16 @@ public String verIngresosPorTorneoYEquipo(Model model) {
 }
 
 
+@Autowired
+private com.diego.curso.springboot.webapp.springboot_web.services.TorneoService torneoService;
+
+@GetMapping("/equipos-por-torneo")
+public String vistaEquiposPorTorneo(Model model) {
+    model.addAttribute("torneos", torneoService.findAll());
+    return "reportes/apiVista/equipos_por_torneo";
+}
+
+
 
 
 
